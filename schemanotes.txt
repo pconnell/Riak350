@@ -1,0 +1,26 @@
+bucket: posts
+-------------
+[
+  hash(title)_yyyy-mm-dd => [
+    title => ""
+    body => ""
+    date => yyyy-mm-dd hh:mm:ss
+    comments => [
+      # => [
+        title => ""
+        body => ""
+        author => ""
+        date => yyyy-mm-dd hh:mm:ss
+      ]
+    ]
+  ]
+]
+
+Use links for tags, so:
+  tag => /posts/key
+
+
+* Retrieving a post gets you both the post and its comments
+* To add a post, just build out the structure above with an empty comments array, then save
+* To add a comment, retrieve the post, append the comment to the comments array, then save
+

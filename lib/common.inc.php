@@ -3,7 +3,8 @@
 $load_libs = array(
                "riak.php",
                "riak_base.inc.php",
-               "posts.inc.php"
+               "posts.inc.php",
+               "tags.inc.php"
              );
 
 foreach($load_libs as $lib){

@@ -2,6 +2,7 @@
 require_once(dirname(__FILE__).'/lib/common.inc.php');
 
 $posts = new Post();
+$tags = new Tag();
 
 #Check the $_POST to take action
 if($_POST){
@@ -24,8 +25,16 @@ foreach ($posts_keys as $key) {
   $posts_data[$key] = $posts->get_post($key);
 }
 
+$tags_keys = $tags->get_tags();
+foreach ($tags_keys as $key) {
+  $tags_data[$key] = $tags->get_tag($key);
+}
+
+
 beginPage();
 print_r($posts_data);
+echo "<p>";
+print_r($tags_data);
 ?>
 
 <form method="POST" action="index.php">

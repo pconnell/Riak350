@@ -13,6 +13,10 @@ beginPage();
 <div class="body">
 <?php echo $posts_data['body']?>
 </div>
+<form name="input" action="DeletePost.php" method="post">
+<input type="hidden" name="key" value="<?php echo $key ?>" />
+<input type="submit" name="Delete Post" value="Delete" />
+</form>
 
 <h2>Comments</h2>
 blah blah chris chris

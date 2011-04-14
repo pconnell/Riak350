@@ -33,4 +33,9 @@ class Post {
     $post = $this->bucket->newObject($k, $data);
     $post->store();
   }
+
+  function delete_post($k){
+   $post = $this->bucket->get($k);
+   $post->delete();		
+  }
 }

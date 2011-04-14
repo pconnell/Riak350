@@ -1,12 +1,12 @@
 bucket: posts
 -------------
 [
-  hash(title)_yyyy-mm-dd => [
+  hash(title)_yyyymmdd => [
     title => ""
     body => ""
     date => yyyy-mm-dd hh:mm:ss
     comments => [
-      # => [
+      hash(title)_yyyymmdd => [
         title => ""
         body => ""
         author => ""
@@ -24,3 +24,34 @@ Use links for tags, so:
 * To add a post, just build out the structure above with an empty comments array, then save
 * To add a comment, retrieve the post, append the comment to the comments array, then save
 
+
+
+An alternative model is this:
+bucket: posts
+-------------
+[
+  hash(title)_yyyymmdd => [
+    title => ""
+    body => ""
+    date => yyyy-mm-dd hh:mm:ss
+  ]
+]
+
+Each post has two kinds of links..
+1: from a post to its comments
+  eg "comment" => /comments/commentkey
+2: from a post to another post (a tag)
+  eg "thetag" => /posts/postkey
+
+
+bucket: comments
+----------------
+[
+    hash(title)_yyyymmdd => [
+        title => ""
+        body => ""
+        author => ""
+        date => yyyy-mm-dd hh:mm:ss
+      ]
+    ]
+] 

@@ -26,11 +26,11 @@ class Post {
     #eager load the album data
     #$this->albums = $this->artist->link("albums")->run();
 
-    return $this->post->getData();
+    return json_decode($this->post->getData());
   }
 
   function store_post($k, $data){
-    $post = $this->bucket->newObject($k, $data);
+    $post = $this->bucket->newObject($k, json_encode($data));
     $post->store();
   }
 }

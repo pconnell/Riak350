@@ -14,7 +14,7 @@ if($_POST){
    
   #if there are no errors store the post data
   if(!isset($errors)){
-    $posts->store_post($_POST['title'], array("body" => $_POST["body"]));
+    $posts->store_post("foobar", array("title" => $_POST["title"], "body" => $_POST["body"], "date" => "2011-05-14"));
   }
   
 }

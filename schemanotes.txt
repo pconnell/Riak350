@@ -5,44 +5,12 @@ bucket: posts
     title => ""
     body => ""
     date => yyyy-mm-dd hh:mm:ss
-    comments => [
-      hash(title)_yyyymmdd => [
-        title => ""
-        body => ""
-        author => ""
-        date => yyyy-mm-dd hh:mm:ss
-      ]
-    ]
   ]
 ]
 
-Use links for tags, so:
-  tag => /posts/key
-
-
-* Retrieving a post gets you both the post and its comments
-* To add a post, just build out the structure above with an empty comments array, then save
-* To add a comment, retrieve the post, append the comment to the comments array, then save
-
-
-
-An alternative model is this:
-bucket: posts
--------------
-[
-  hash(title)_yyyymmdd => [
-    title => ""
-    body => ""
-    date => yyyy-mm-dd hh:mm:ss
-  ]
-]
-
-Each post has two kinds of links..
-1: from a post to its comments
-  eg "comment" => /comments/commentkey
-2: from a post to another post (a tag)
-  eg "thetag" => /posts/postkey
-
+Each post has a set of links from a post to its comments:
+  "comment" => /comments/commentkey
+There is no issue with the same link name (comment) being used multiple times...
 
 bucket: comments
 ----------------
@@ -55,3 +23,13 @@ bucket: comments
       ]
     ]
 ] 
+
+
+bucket: tags
+----------------
+[
+  tagname => [
+    # => post_key    
+  ]
+] 
+

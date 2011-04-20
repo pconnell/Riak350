@@ -28,4 +28,5 @@ class Comment {
 		$post = $this->bucket->get($key);
 		$post->delete();
 	}
+
 }

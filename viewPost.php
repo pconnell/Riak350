@@ -20,8 +20,12 @@ beginPage();
 
 <h2>Comments</h2>
 <form name = "input" action = "addComment.php" method="post">
-<input type = "textbox" name = "comment" style="width:200px; height:75px;";
+<input type = "textbox" name = "comment" style="width:200px; height:75px;">
+<input type = "hidden" name = "postKey"value=<?php echo $key ?>>
 </br></br><input type = "submit" name="Submit Comment" Value = "Submit Your Comment" />
 </form>
+<FORM>
+
+</FORM>
 <?php
 endPage();

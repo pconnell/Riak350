@@ -30,4 +30,16 @@ class Tag {
     $tag = $this->bucket->newObject($k, $data);
     $tag ->store();
   }
+
+  function get_tags_for_post($k) {
+    $result = $this->riak->add("tags")->
+      map("function (v) { " .
+      " vals = JSON.parse(v.values[0].data); " .
+      " for (i = 0; i < vals.length; i++) { " .
+      "   if (vals[i] == '" . $k . "') {" .
+      "     return [v.key] " .
+      "   } } return [] } ") -> 
+      run();
+    return $result;
+  }
 }

@@ -1,10 +1,12 @@
+
 <?php
 class Comment {
 
 	private $riak;
 
 	public $bucket;
-	public $post;
+	public $key;
+	public $comment;
 
 	function __construct(){
 		$riak_connection = new Riak();
@@ -17,16 +19,17 @@ class Comment {
 		return $keys;
 	}
 	function get_comment($key){
-		$this->post = $this->bucket->get($key);
-		return $this->post->getData();
+		$this->comment = $this->bucket->get($key);
+		return $this->comment->getData();	
 	}
-	function store_comment($key, $data){
-		$post = $this->bucket->newObject($key, $data);
-		$post -> store();
-	}
+        function store_comment($key, $data){ 
+	$this->comment = $this->bucket->newObject($key, $data);  
+	$this->comment->store(); 
+	$this->key = $this ->comment ->key; 
+	} 
 	function delete_comment($key){
-		$post = $this->bucket->get($key);
-		$post->delete();
+		$comment = $this->bucket->get($key);
+		$comment->delete();
 	}
 
 }

@@ -2,7 +2,7 @@
 class Post {
   
   private $riak;
-  
+  public $comments;
   public $bucket;
   public $post;
 
@@ -22,7 +22,7 @@ class Post {
   function get_post($k){
     #get the post object
     $this->post = $this->bucket->get($k);
-    
+    $this->comments = $this->post->link("comments")->run();
     #eager load the album data
     #$this->albums = $this->artist->link("albums")->run();
 
@@ -38,4 +38,11 @@ class Post {
    $post = $this->bucket->get($k);
    $post->delete();		
   }
+  
+  function link_comment($comment){
+   $this->post->addLink($comment);
+   $this->post->store();
+  }
+
+ 
 }
